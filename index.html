@@ -24,6 +24,83 @@
             --gradient: linear-gradient(135deg, #7b1fa2 0%, #ab47bc 100%);
         }
 
+        /* Light theme variables */
+        :root.light-theme {
+            --primary-color: #6a1b9a;
+            --secondary-color: #8e24aa;
+            --accent-color: #ce93d8;
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a148c;
+            --background: #f5f5f5;
+            --surface: #ffffff;
+            --border: #ce93d8;
+            --gradient: linear-gradient(135deg, #ba68c8 0%, #f48fb1 100%);
+            --hover-color: #f48fb1; 
+            --hover-shadow: rgba(244, 143, 177, 0.5); 
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--background);
+            transition: background 0.5s, color 0.5s;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .light-theme .nav a:hover,
+        .light-theme .nav a.active,
+        .light-theme .social-links a:hover,
+        .light-theme .project-link:hover,
+        .light-theme .skill-tag:hover {
+            background: var(--hover-color);
+            color: var(--text-primary);
+            box-shadow: 0 0 10px var(--hover-shadow);
+            transform: translateY(-2px);
+        }
+
+        /* Theme toggle button */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--gradient);
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            font-size: 1.3rem;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(20deg) scale(1.1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        :root {
+            --primary-color: #7b1fa2;
+            --secondary-color: #4a148c;
+            --accent-color: #ab47bc;
+            --text-primary: #ffffff;
+            --text-secondary: #e1bee7;
+            --background: #121212;
+            --surface: #1e1e1e;
+            --border: #ba68c8;
+            --gradient: linear-gradient(135deg, #7b1fa2 0%, #ab47bc 100%);
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
@@ -703,6 +780,11 @@
         </div>
     </header>
 
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="theme-toggle" title="Toggle Light/Dark Mode">
+        <i class="fas fa-moon"></i>
+    </button>
+
     <!-- Navigation -->
     <nav class="nav">
         <div class="container nav-container">
@@ -967,6 +1049,7 @@
         <div class="container">
             <h2 class="section-title fade-in">Education & Certifications</h2>
             <div class="education-grid">
+                
                 <div class="education-card fade-in">
                     <div class="education-icon">
                         <i class="fas fa-graduation-cap"></i>
@@ -979,11 +1062,18 @@
 
                 <div class="cert-card fade-in">
                     <div class="cert-icon">
-                        <i class="fas fa-certificate"></i>
+                        <i class="fas fa-brain"></i>
                     </div>
                     <h3 class="cert-title">AI & Machine Learning</h3>
                     <p class="cert-issuer">Huawei & National Telecommunication Institute (NTI)</p>
                     <p class="cert-date">July 2025</p>
+
+                        <div class="project-links">
+                            <a href="https://drive.google.com/file/d/1UbrG48qNCLyMsL5ZNyNbFknmgYCg8568/view?usp=sharing" class="project-link">
+                                <i class="fas fa-external-link-alt"></i> View certificate
+                            </a>
+                        </div>
+
                 </div>
 
                 <div class="cert-card fade-in">
@@ -993,7 +1083,24 @@
                     <h3 class="cert-title">UI/UX Design</h3>
                     <p class="cert-issuer">National Telecommunication Institute (NTI)</p>
                     <p class="cert-date">August 2025</p>
+
+                        <div class="project-links">
+                            <a href="https://drive.google.com/file/d/1Uradzn3tWXoU3zkP-nGXoK59PyE8ib8f/view?usp=sharing" class="project-link">
+                                <i class="fas fa-external-link-alt"></i> View certificate
+                            </a>
+                        </div>
+
                 </div>
+
+                <div class="cert-card fade-in">
+                    <div class="cert-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="cert-title">Backend .NET</h3>
+                    <p class="cert-issuer">Information Technology Institute (ITI)</p>
+                    <p class="cert-date">September 2025</p>
+                </div>
+
             </div>
         </div>
     </section>
@@ -1164,6 +1271,19 @@
             setTimeout(() => {
                 document.body.style.opacity = '1';
             }, 100);
+        });
+
+        const toggleBtn = document.getElementById('theme-toggle');
+        const root = document.documentElement;
+
+        toggleBtn.addEventListener('click', () => {
+            root.classList.toggle('light-theme');
+            const icon = toggleBtn.querySelector('i');
+            if (root.classList.contains('light-theme')) {
+                icon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                icon.classList.replace('fa-sun', 'fa-moon');
+            }
         });
     </script>
 </body>
