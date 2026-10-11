@@ -58,21 +58,21 @@
                 --bg: #F8F3F1;
                 --bg-2: #F0E5E1;
                 --surface: #FFFFFF;
-                --ink: #382A31;
-                --ink-2: #715C65;
-                --ink-3: #A08D95;
-                --line: #8B707B;
+                --ink: #2E2128;
+                --ink-2: #634E58;
+                --ink-3: #96828B;
+                --line: #6F4F5C;
                 --line-soft: #E7D9D8;
-                --sh: #3D2A32;
-                --pop: #B86F86;
+                --sh: #2E2128;
+                --pop: #8E4A65;
                 --pop-ink: #FFFFFF;
                 --ok: #397E5A;
-                --lilac: #E8D9E6;
-                --mint: #D5E5DA;
-                --peach: #EED9CB;
-                --butter: #EFE4C3;
-                --sky: #D6E2EB;
-                --rose: #EBD1D8;
+                --lilac: #E4DAE4;
+                --mint: #D2E3D9;
+                --peach: #EBDCD0;
+                --butter: #EDE4C8;
+                --sky: #D3E0EA;
+                --rose: #E8D3DA;
             }
 
             :root[data-palette="ocean"] {
@@ -645,12 +645,12 @@
         }
 
         /* أشكال عايمة في الخلفية بدل البلوبز */
-        .float {
+        /*.float {
             position: absolute;
             z-index: 1;
             pointer-events: none;
             animation: bob 7s ease-in-out infinite alternate;
-        }
+        }*/
 
             .float.f1 {
                 top: 40px;
@@ -1226,6 +1226,178 @@
                 color: var(--pop);
             }
 
+
+        /* ============================================
+           عناصر الباك إند: Request flow + Endpoints
+           ============================================ */
+        .sec-head .chip {
+            font-family: var(--font-mono);
+        }
+
+        .flow-card {
+            padding: 28px;
+            margin-top: 28px;
+        }
+
+            .flow-card:hover, .api-card:hover {
+                transform: none;
+                box-shadow: 5px 5px 0 var(--sh);
+            }
+
+            .flow-card h3, .api-card h3 {
+                font-size: 1.25rem;
+                font-weight: 700;
+                margin-bottom: 6px;
+            }
+
+        .flow-sub {
+            color: var(--ink-2);
+            font-size: .95rem;
+            margin-bottom: 20px;
+        }
+
+        .flow {
+            display: flex;
+            align-items: stretch;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+            .flow .node {
+                flex: 1 1 140px;
+                background: var(--surface);
+                border: 2px solid var(--line);
+                border-radius: 14px;
+                padding: 12px 14px;
+                box-shadow: 3px 3px 0 var(--sh);
+            }
+
+                .flow .node b {
+                    display: block;
+                    font-family: var(--font-mono);
+                    font-size: .88rem;
+                    font-weight: 600;
+                }
+
+                .flow .node span {
+                    font-size: .78rem;
+                    color: var(--ink-2);
+                }
+
+            .flow .arrow {
+                align-self: center;
+                font-style: normal;
+                font-weight: 800;
+                color: var(--pop);
+            }
+
+        .api-card {
+            padding: 28px;
+            margin-top: 36px;
+        }
+
+            .api-card > p {
+                color: var(--ink-2);
+                font-size: .95rem;
+                margin-bottom: 18px;
+            }
+
+        .api-row {
+            display: grid;
+            grid-template-columns: 76px minmax(0, 1.3fr) minmax(0, 1.2fr) auto;
+            gap: 14px;
+            align-items: center;
+            padding: 12px 0;
+        }
+
+            .api-row + .api-row {
+                border-top: 2px dashed var(--line-soft);
+            }
+
+            .api-row code {
+                font-family: var(--font-mono);
+                font-size: .84rem;
+                font-weight: 500;
+                overflow-wrap: anywhere;
+            }
+
+            .api-row .desc {
+                color: var(--ink-2);
+                font-size: .92rem;
+            }
+
+            .api-row .sts {
+                display: flex;
+                gap: 6px;
+                justify-content: flex-end;
+            }
+
+        .m, .st {
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: .74rem;
+            border: 1.5px solid var(--line);
+            color: var(--ink);
+        }
+
+        .m {
+            text-align: center;
+            padding: 4px 0;
+            border-radius: 8px;
+        }
+
+        .m-get {
+            background: var(--sky);
+        }
+
+        .m-post {
+            background: var(--mint);
+        }
+
+        .m-del {
+            background: var(--butter);
+        }
+
+        .st {
+            padding: 3px 9px;
+            border-radius: 999px;
+            background: var(--surface);
+        }
+
+        .st-ok {
+            color: var(--ok);
+        }
+
+        .st-err {
+            color: var(--pop);
+        }
+
+        @media (max-width: 760px) {
+            .api-row {
+                grid-template-columns: auto 1fr;
+                row-gap: 6px;
+            }
+
+                .api-row .desc {
+                    grid-column: 1 / -1;
+                }
+
+                .api-row .sts {
+                    grid-column: 1 / -1;
+                    justify-content: flex-start;
+                }
+        }
+
+        @media (max-width: 600px) {
+            .flow {
+                flex-direction: column;
+            }
+
+                .flow .arrow {
+                    transform: rotate(90deg);
+                }
+        }
+
         /* توست اسم الباليت */
         .toast {
             position: fixed;
@@ -1395,9 +1567,7 @@
     <!-- الهيرو -->
     <header class="hero">
         <!-- أشكال عايمة -->
-        <svg class="float f1" width="54" height="54" viewBox="0 0 54 54" aria-hidden="true"><path d="M27 3l6.2 15.6L49 21l-12 11 3.4 16.6L27 41.2 13.6 48.6 17 32 5 21l15.8-2.4z" fill="var(--pop)" stroke="var(--line)" stroke-width="2.5" stroke-linejoin="round" /></svg>
-        <svg class="float f2" width="90" height="26" viewBox="0 0 90 26" aria-hidden="true"><path d="M3 13c8-14 14 14 22 0s14 14 22 0 14 14 22 0 14 14 18 0" fill="none" stroke="var(--line)" stroke-width="3.5" stroke-linecap="round" /></svg>
-        <svg class="float f3" width="46" height="46" viewBox="0 0 46 46" aria-hidden="true"><circle cx="23" cy="23" r="19" fill="var(--sky)" stroke="var(--line)" stroke-width="2.5" /></svg>
+        <!--<svg class="float f2" width="90" height="26" viewBox="0 0 90 26" aria-hidden="true"><path d="M3 13c8-14 14 14 22 0s14 14 22 0 14 14 22 0 14 14 18 0" fill="none" stroke="var(--line)" stroke-width="3.5" stroke-linecap="round" /></svg>-->
 
         <div class="container hero-grid">
             <div>
@@ -1461,7 +1631,7 @@
         <div class="container about-grid">
             <div>
                 <div class="sec-head fade-in" style="margin-bottom:24px;">
-                    <span class="chip t-lilac">About me</span>
+                    <span class="chip t-sky">GET /about</span>
                     <h2>Backend-focused, product-minded.</h2>
                 </div>
                 <p class="fade-in">.NET Backend Developer with 6+ months of professional experience developing backend solutions for a SaaS-based automotive ERP platform. Skilled in C#, ASP.NET Core, Web API, SQL Server, Entity Framework Core, and RESTful APIs. Experienced in analyzing business requirements and building practical solutions using Clean Architecture, Dependency Injection, and JWT Authentication.</p>
@@ -1470,7 +1640,7 @@
             <div class="stats fade-in">
                 <div class="card stat t-butter"><b>6+</b><span>Months of professional experience</span></div>
                 <div class="card stat t-mint"><b>4+</b><span>Backend projects shipped</span></div>
-                <div class="card stat t-peach"><b>170+</b><span>API endpoints built</span></div>
+                <div class="card stat t-butter"><b>170+</b><span>API endpoints built</span></div>
                 <div class="card stat t-sky"><b>4</b><span>Technical certifications</span></div>
             </div>
         </div>
@@ -1480,13 +1650,13 @@
     <section id="experience" class="section">
         <div class="container">
             <div class="sec-head fade-in">
-                <span class="chip t-peach">Experience</span>
+                <span class="chip t-butter">GET /experience</span>
                 <h2>Where I've worked</h2>
                 <p>Hands-on backend experience across an enterprise ERP system, structured training programs, and team projects.</p>
             </div>
 
             <div class="exp-list">
-                <div class="card exp-card t-lilac fade-in">
+                <div class="card exp-card t-sky fade-in">
                     <div class="exp-date">
                         <span class="chip">On-site</span>
                         <span class="when">Feb 2026 — Aug 2026</span>
@@ -1547,13 +1717,13 @@
     <section id="skills" class="section">
         <div class="container">
             <div class="sec-head fade-in">
-                <span class="chip t-mint">Skills</span>
+                <span class="chip t-mint">GET /skills</span>
                 <h2>Tools I build with</h2>
                 <p>Focused on backend engineering with ASP.NET Core, APIs, databases, and practical software architecture.</p>
             </div>
 
             <div class="skills-grid">
-                <div class="card skill-card t-peach fade-in">
+                <div class="card skill-card t-butter fade-in">
                     <h3><span class="skill-ic"><i class="fas fa-server"></i></span> Backend</h3>
                     <div class="skill-tags"><span class="tag">C#</span><span class="tag">.NET</span><span class="tag">ASP.NET Core</span><span class="tag">ASP.NET Core Web API</span><span class="tag">Entity Framework Core</span><span class="tag">LINQ</span><span class="tag">RESTful APIs</span><span class="tag">JWT Authentication</span></div>
                 </div>
@@ -1563,7 +1733,7 @@
                     <div class="skill-tags"><span class="tag">SQL Server</span><span class="tag">Relational Database Design</span><span class="tag">ERD</span><span class="tag">Query Optimization</span></div>
                 </div>
 
-                <div class="card skill-card t-lilac fade-in">
+                <div class="card skill-card t-sky fade-in">
                     <h3><span class="skill-ic"><i class="fas fa-code"></i></span> Other Programming Languages</h3>
                     <div class="skill-tags"><span class="tag">Python</span><span class="tag">Java</span><span class="tag">C++</span><span class="tag">JavaScript</span></div>
                 </div>
@@ -1578,12 +1748,24 @@
                     <div class="skill-tags"><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">Visual Studio</span><span class="tag">VS Code</span><span class="tag">Swagger</span></div>
                 </div>
 
-                <div class="card skill-card t-rose fade-in">
+                <div class="card skill-card t-mint fade-in">
                     <h3><span class="skill-ic"><i class="fas fa-layer-group"></i></span> Additional</h3>
                     <div class="sub-label">UI/UX Design</div>
                     <div class="skill-tags"><span class="tag">Figma</span><span class="tag">Wireframing</span><span class="tag">Prototyping</span></div>
                     <div class="sub-label">AI/ML</div>
                     <div class="skill-tags"><span class="tag">Scikit-learn</span><span class="tag">Pandas</span><span class="tag">NumPy</span></div>
+                </div>
+            </div>
+
+            <div class="card flow-card t-butter fade-in">
+                <h3>Request flow I follow</h3>
+                <p class="flow-sub">Every endpoint goes through the same layers, which keeps the code easy to maintain and change.</p>
+                <div class="flow">
+                    <div class="node"><b>Client</b><span>HTTP request</span></div><i class="arrow">&rarr;</i>
+                    <div class="node"><b>Controller</b><span>DTOs &middot; JWT &middot; validation</span></div><i class="arrow">&rarr;</i>
+                    <div class="node"><b>Service</b><span>business logic</span></div><i class="arrow">&rarr;</i>
+                    <div class="node"><b>Repository / UoW</b><span>EF Core &middot; LINQ</span></div><i class="arrow">&rarr;</i>
+                    <div class="node"><b>SQL Server</b><span>relational schema</span></div>
                 </div>
             </div>
         </div>
@@ -1593,7 +1775,7 @@
     <section id="projects" class="section">
         <div class="container">
             <div class="sec-head fade-in">
-                <span class="chip t-sky">Projects</span>
+                <span class="chip t-sky">GET /projects</span>
                 <h2>Selected work</h2>
                 <p>A few projects that best represent how I build — from graduation project to team-led platforms.</p>
             </div>
@@ -1640,7 +1822,7 @@
                 </div>
 
                 <div class="card project-card fade-in">
-                    <div class="project-top t-peach">
+                    <div class="project-top t-butter">
                         <div class="project-meta"><span class="chip">Backend Developer</span><span class="chip">2025</span></div>
                         <h3>Yodneen — E-commerce Platform for Islamic Attire</h3>
                     </div>
@@ -1659,6 +1841,17 @@
                     </div>
                 </div>
             </div>
+
+            <!--<div class="card api-card t-sky fade-in">
+                <h3>The kind of APIs I design</h3>
+                <p>Sample endpoints showing the REST conventions I follow: JWT auth, pagination, role-based access, and proper status codes.</p>
+                <div class="api-row"><span class="m m-post">POST</span><code>/api/auth/login</code><span class="desc">Authenticate and issue a JWT</span><span class="sts"><span class="st st-ok">200</span><span class="st st-err">401</span></span></div>
+                <div class="api-row"><span class="m m-get">GET</span><code>/api/products?page=1&amp;pageSize=12</code><span class="desc">Filtered, paginated list</span><span class="sts"><span class="st st-ok">200</span></span></div>
+                <div class="api-row"><span class="m m-get">GET</span><code>/api/products/{id}</code><span class="desc">Fetch a single item</span><span class="sts"><span class="st st-ok">200</span><span class="st st-err">404</span></span></div>
+                <div class="api-row"><span class="m m-post">POST</span><code>/api/products</code><span class="desc">Create (Admin only)</span><span class="sts"><span class="st st-ok">201</span><span class="st st-err">403</span></span></div>
+                <div class="api-row"><span class="m m-del">DELETE</span><code>/api/products/{id}</code><span class="desc">Remove (Admin only)</span><span class="sts"><span class="st st-ok">204</span></span></div>
+            </div>-->
+
         </div>
     </section>
 
@@ -1667,7 +1860,7 @@
         <div class="container edu-grid">
             <div class="fade-in">
                 <div class="sec-head" style="margin-bottom:28px;">
-                    <span class="chip t-rose">Education</span>
+                    <span class="chip t-mint">GET /education</span>
                     <h2>Background</h2>
                 </div>
                 <div class="card edu-card t-sky">
@@ -1679,7 +1872,7 @@
 
             <div class="fade-in">
                 <div class="sec-head" style="margin-bottom:28px;">
-                    <span class="chip t-butter">Certifications</span>
+                    <span class="chip t-butter">GET /certifications</span>
                     <h2>Credentials</h2>
                 </div>
                 <div class="card cert-card">
